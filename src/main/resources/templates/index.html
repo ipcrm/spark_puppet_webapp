@@ -1,9 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Hello world</title>
+  <title>Hello world</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
 </head>
 <body>
-<p th:inline="text">Hello, [[${lang}]]!</p>
+  <div class="container-fluid" >
+    <div style="margin-top: 20px;" class="jumbotron">
+      <p style="font-size: 48px;" th:inline="text">[[${lang}]]</p>
+    </div>
+</div>
 </body>
 </html>

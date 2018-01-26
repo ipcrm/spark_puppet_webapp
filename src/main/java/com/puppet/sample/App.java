@@ -14,7 +14,13 @@ import static spark.Spark.staticFileLocation;
 public class App
 {
 
+  public String enMsg()
+  {
+    return "Hello World!";
+  }
+
   public static void main(String[] args) {
+
     get("/", (request, response) -> {
       response.redirect("/en");
       return null;
@@ -26,7 +32,13 @@ public class App
 
   public static ModelAndView helloWorld(Request req, Response res) {
     Map<String, Object> params = new HashMap<>();
-    params.put("lang",req.params(":lang"));
+
+
+    if (req.params(":lang").equals("en")) {
+      App test = new App();
+      params.put("lang", test.enMsg());
+    }
+
     return new ModelAndView(params, "index");
   }
 
