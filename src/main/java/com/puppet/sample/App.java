@@ -1,4 +1,5 @@
 package com.puppet.sample;
+import com.puppet.sample.langs.Sp;
 
 import spark.ModelAndView;
 import spark.Request;
@@ -33,18 +34,16 @@ public class App
     Map<String, Object> params = new HashMap<>();
 
     if (req.params(":lang").equals("en")) {
-
-      App test = new App();
-      params.put("lang", test.enMsg());
-
+        App test = new App();
+        params.put("lang", test.enMsg());
+    } else if (req.params(":lang").equals("sp")) {
+        Sp sp = new Sp();
+        params.put("lang", sp.Msg());
     } else {
-
-      String msg = "I don't know that language ~> ";
-      msg += req.params(":lang");
-      params.put("lang", msg); 
-
-    }
-
+        String msg = "I don't know that language ~> ";
+        msg += req.params(":lang");
+        params.put("lang", msg); 
+    } 
 
     return new ModelAndView(params, "index");
   }

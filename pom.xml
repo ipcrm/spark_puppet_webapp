@@ -45,6 +45,11 @@
         <artifactId>spark-template-thymeleaf</artifactId>
         <version>2.3</version>
     </dependency>
+    <dependency>
+      <groupId>com.puppet.sample.langs</groupId>
+      <artifactId>sp</artifactId>
+      <version>1.0-SNAPSHOT</version>
+    </dependency>
   </dependencies>
 
   <build>
