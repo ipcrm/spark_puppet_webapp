@@ -14,6 +14,7 @@ mvn exec:java -Dexec.mainClass="com.puppet.sample.App"
 For real
 ```
 mvn clean package
+java -jar target/puppet-webapp-<VERSION>.jar
 ```
   
   
