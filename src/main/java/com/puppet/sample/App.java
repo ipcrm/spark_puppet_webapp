@@ -9,7 +9,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static spark.Spark.get;
-import static spark.Spark.staticFileLocation;
 
 public class App
 {
@@ -32,7 +31,6 @@ public class App
 
   public static ModelAndView helloWorld(Request req, Response res) {
     Map<String, Object> params = new HashMap<>();
-
 
     if (req.params(":lang").equals("en")) {
       App test = new App();
