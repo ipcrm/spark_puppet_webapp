@@ -20,7 +20,7 @@ mvn clean package
 
 Dependency projects
 -------------------
-(Spark Puppet Webapp Spanish Language)[https://github.com/ipcrm/spark_puppet_webapp_lang_sp]
+[Spark Puppet Webapp Spanish Language](https://github.com/ipcrm/spark_puppet_webapp_lang_sp)
 
 
 
