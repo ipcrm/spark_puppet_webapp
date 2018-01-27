@@ -33,9 +33,18 @@ public class App
     Map<String, Object> params = new HashMap<>();
 
     if (req.params(":lang").equals("en")) {
+
       App test = new App();
       params.put("lang", test.enMsg());
+
+    } else {
+
+      String msg = "I don't know that language ~> ";
+      msg += req.params(":lang");
+      params.put("lang", msg); 
+
     }
+
 
     return new ModelAndView(params, "index");
   }
