@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static spark.Spark.get;
+import static spark.Spark.before;
 
 public class App
 {
@@ -19,7 +20,19 @@ public class App
     return "Hello World!";
   }
 
+  private static String requestInfoToString(Request request) {
+    StringBuilder sb = new StringBuilder();
+    sb.append(request.requestMethod());
+    sb.append(" " + request.url());
+    sb.append(" " + request.body());
+    return sb.toString();
+  }
+
   public static void main(String[] args) {
+
+    before((request, response) -> {
+        System.out.println(requestInfoToString(request));
+    });
 
     get("/", (request, response) -> {
       response.redirect("/en");
