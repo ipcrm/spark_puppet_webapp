@@ -35,7 +35,7 @@ public class TestRoutes
         assertTrue(res.body.contains("Hello World!"));
 	}
 
-    @Test
+	@Test
     public void testSpMsg() {
         TestResponse res = request("GET", "/sp");
         assertEquals(200, res.status);
