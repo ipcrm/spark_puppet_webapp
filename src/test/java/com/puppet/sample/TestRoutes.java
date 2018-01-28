@@ -33,6 +33,13 @@ public class TestRoutes
         TestResponse res = request("GET", "/en");
         assertEquals(200, res.status);
         assertTrue(res.body.contains("Hello World!"));
+	}
+
+    @Test
+    public void testSpMsg() {
+        TestResponse res = request("GET", "/sp");
+        assertEquals(200, res.status);
+        assertTrue(res.body.contains("¡Hola Mundo!"));
     }
 
     private TestResponse request(String method, String path) {
