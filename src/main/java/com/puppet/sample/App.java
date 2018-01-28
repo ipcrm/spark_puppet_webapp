@@ -4,6 +4,7 @@ import com.puppet.sample.langs.Sp;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
+import spark.Spark;
 import spark.template.thymeleaf.ThymeleafTemplateEngine;
 
 import java.util.HashMap;
@@ -29,6 +30,9 @@ public class App
   }
 
   public static void main(String[] args) {
+
+    Spark.port(4567);
+    Spark.threadPool(1000, 1000,60000);
 
     before((request, response) -> {
         System.out.println(requestInfoToString(request));

@@ -16,33 +16,38 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
+import java.io.IOException;
+
+
 public class TestRoutes 
 {
     @BeforeClass
-    public static void beforeClass() {
+    public static void beforeClass() throws Exception {
       App.main(null);
+	  Thread.sleep(1000);
     }
    
     @AfterClass
-    public static void afterClass() {
+    public static void afterClass() throws Exception {
+	  Thread.sleep(1000);
       Spark.stop();
     }
 
     @Test
-    public void testEnMsg() {
+    public void testEnMsg() throws IOException {
         TestResponse res = request("GET", "/en");
         assertEquals(200, res.status);
         assertTrue(res.body.contains("Hello World!"));
 	}
 
 	@Test
-    public void testSpMsg() {
+    public void testSpMsg() throws IOException {
         TestResponse res = request("GET", "/sp");
         assertEquals(200, res.status);
         assertTrue(res.body.contains("¡Hola Mundo!"));
     }
 
-    private TestResponse request(String method, String path) {
+    private TestResponse request(String method, String path) throws java.io.IOException {
 		try {
 			URL url = new URL("http://localhost:4567" + path);
 			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
