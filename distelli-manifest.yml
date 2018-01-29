@@ -4,6 +4,6 @@ ipcrm/sparkjava-puppet-webapp:
   PkgInclude:
     - 'target/puppet-webapp-*.jar'
   PreInstall:
-    - yum install -y java-1.8.0-openjdk
+    - sudo yum install -y java-1.8.0-openjdk
   Exec:
     - java -jar target/puppet-webapp-*.jar
