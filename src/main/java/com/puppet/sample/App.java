@@ -55,6 +55,9 @@ public class App
   public static ModelAndView helloWorld(Request req, Response res) {
     Map<String, Object> params = new HashMap<>();
 
+    App t = new App();
+    params.put("version", t.getClass().getPackage().getImplementationVersion() );
+
     if (req.params(":lang").equals("en")) {
         App test = new App();
         params.put("lang", test.enMsg());
