@@ -31,7 +31,12 @@ public class App
 
   public static void main(String[] args) {
 
-    Spark.port(9999);
+    try {
+      Spark.port(Integer.parseInt(System.getProperty("appPort")));
+    } catch (Exception e) {
+      Spark.port(9999);
+    }
+
     Spark.threadPool(1000, 1000,60000);
 
     before((request, response) -> {
