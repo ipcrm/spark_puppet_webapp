@@ -1,0 +1,7 @@
+ipcrm/sparkjava-puppet-webapp:
+  Build:
+    - echo "Built and tested with Jenkins"
+  PkgInclude:
+    - 'target/puppet-webapp-*.jar'
+  Exec:
+    # Use this section to run the application.
