@@ -19,21 +19,10 @@ if [ ! -z "$GIT_COMMIT" ]; then
   DISTELLI_CHANGE_URL=$GIT_URL
   DISTELLI_CHANGE_AUTHOR=$GIT_AUTHOR_NAME
   DISTELLI_CHANGE_AUTHOR_DISPLAY_NAME=$GIT_AUTHOR_NAME
-  DISTELLI_CHANGE_TITLE="NoChangeMessage"
+  DISTELLI_CHANGE_TITLE=$(git --no-pager log --pretty=format:"%s" -1)
   DISTELLI_CHANGE_ID=$GIT_COMMIT
   DISTELLI_BRANCH_NAME=$GIT_BRANCH
   DISTELLI_CHANGE_TARGET=$GIT_URL
-else
-  echo -e "No GIT variables available. Using standard Jenkins variables.\n"
-  DISTELLI_BUILD_ID=$BUILD_NUMBER
-  DISTELLI_BUILD_URL=$BUILD_URL
-  DISTELLI_CHANGE_URL="NoChangeURL"
-  DISTELLI_CHANGE_AUTHOR="NoChangeAuthor"
-  DISTELLI_CHANGE_AUTHOR_DISPLAY_NAME="NoChangeAuthorName"
-  DISTELLI_CHANGE_TITLE="NoChangeMessage"
-  DISTELLI_CHANGE_ID="NoChangeID"
-  DISTELLI_BRANCH_NAME="NoChangeBranch"
-  DISTELLI_CHANGE_TARGET="NoChangeTarget"
 fi
 
 # Creating Distelli PUSH event
@@ -47,8 +36,7 @@ API_JSON=$(printf '{"commit_url":%s, "author_username":%s, "author_name":%s, "co
   "$(jq -R . <<<"$DISTELLI_CHANGE_ID")" \
   "$(jq -R . <<<"$DISTELLI_BRANCH_NAME")" \
   "$(jq -R . <<<"$DISTELLI_CHANGE_TARGET")")
-  
- 
+
 DISTELLI_RESPONSE=$(curl -s -k -X PUT -H "Content-Type: application/json" "$DISTELLI_API_URL/apps/$DISTELLI_APP_NAME/events/pushEvent?apiToken=$PIPELINES_API_TOKEN" -d "$API_JSON")
 DISTELLI_PUSH_EVENT_ID=$(echo $DISTELLI_RESPONSE | jq .event_id | tr -d '"')
 echo -e "push_event_id: $DISTELLI_PUSH_EVENT_ID\n"
