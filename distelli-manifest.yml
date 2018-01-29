@@ -3,5 +3,7 @@ ipcrm/sparkjava-puppet-webapp:
     - echo "Built and tested with Jenkins"
   PkgInclude:
     - 'target/puppet-webapp-*.jar'
+  PreInstall:
+    - yum install -y java-1.8.0-openjdk
   Exec:
-    # Use this section to run the application.
+    - java -jar target/puppet-webapp-*.jar
