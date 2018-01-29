@@ -7,8 +7,7 @@ ipcrm/sparkjava-puppet-webapp:
     - 'target/puppet-webapp-*.jar'
   PreInstall:
     - sudo yum install -y java-1.8.0-openjdk
-    - echo -n "Port has been set to: "
-    - echo $PORT
+    - 'echo -n "Port has been set to: ${PORT}"'
   Exec:
     - java -DappPort=$PORT -jar target/puppet-webapp-*.jar
   PostStart:
