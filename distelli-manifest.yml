@@ -2,7 +2,7 @@ ipcrm/sparkjava-puppet-webapp:
   Env:
     - PORT: "9999"
   Build:
-    - echo "Built and tested with Jenkins"
+    - mvn clean package -s settings.xml
   PkgInclude:
     - 'target/puppet-webapp-*.jar'
   PreInstall:
