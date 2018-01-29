@@ -1,4 +1,6 @@
 ipcrm/sparkjava-puppet-webapp:
+  Env:
+    - PORT: "9999"
   Build:
     - echo "Built and tested with Jenkins"
   PkgInclude:
@@ -6,8 +8,10 @@ ipcrm/sparkjava-puppet-webapp:
   PreInstall:
     - sudo yum install -y java-1.8.0-openjdk
   Exec:
-    - java -jar target/puppet-webapp-*.jar
+    - java -jar target/puppet-webapp-*.jar -DappPort=$PORT
   PostStart:
-    - sudo iptables -I INPUT -p tcp -m multiport --dports 9999 -m comment --comment "110 allow http 9999 access" -j ACCEPT
+    - sudo iptables -I INPUT -p tcp -m multiport --dports $PORT -m comment --comment "110 allow http ${PORT} access" -j ACCEPT
     - publicip=$(curl -s ident.me) || true
-    - 'echo "URL: http://$publicip:9999"'
+    - 'echo "URL: http://$publicip:${PORT}"'
+
+
