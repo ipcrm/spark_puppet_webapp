@@ -2,7 +2,7 @@ ipcrm/sparkjava-puppet-webapp-build:
   Env:
     - PORT: "9999"
   Build:
-    - mvn clean package -s settings.xml
+    - mvn clean package -s settings.xml -U
   PkgInclude:
     - 'target/puppet-webapp-*.jar'
   Exec:
