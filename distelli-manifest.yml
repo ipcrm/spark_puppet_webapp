@@ -1,4 +1,4 @@
-ipcrm/sparkjava-puppet-webapp-build:
+matt/spark_puppet_webapp:
   Env:
     - PORT: "9999"
   Build:
