@@ -6,6 +6,6 @@ ipcrm/sparkjava-puppet-webapp-build:
   PkgInclude:
     - 'target/puppet-webapp-*.jar'
   Exec:
-    - java -DappPort=%PORT% -jar %cd%/target/puppet-webapp-1.2.jar
+    - powershell -command "java -DappPort=%PORT% -jar %cd%/target/puppet-webapp-1.2.jar"
 
 
