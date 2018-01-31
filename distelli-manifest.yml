@@ -6,6 +6,6 @@ ipcrm/sparkjava-puppet-webapp-build:
   PkgInclude:
     - 'target/puppet-webapp-*.jar'
   Exec:
-    - java -jar C:\distelli\envs\sparkjava-puppet-webapp-build-windows\target\puppet-webapp-1.2.jar
+    - java -jar C:\distelli\_apps\sparkjava-puppet-webapp-build.sparkjava-puppet-webapp-build-windows.d-29iy6febsa9566a05651\target\puppet-webapp-1.2.jar
   PostInstall:
     - dir C:\distelli\envs\sparkjava-puppet-webapp-build-windows\target\puppet-webapp-1.2.jar
