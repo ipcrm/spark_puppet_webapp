@@ -1,6 +1,5 @@
 Spark Puppet Webapp Sample
 ==========================
-
 The king of hello worlds.
 
 
