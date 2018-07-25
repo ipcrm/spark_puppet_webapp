@@ -7,7 +7,9 @@ ipcrm/sparkjava-puppet-webapp:
     - 'target/puppet-webapp-*.jar'
   PreInstall:
     - sudo yum install -y java-1.8.0-openjdk
+    - sudo localedef -c -f UTF-8 -i en_US en_US.UTF-8
   Exec:
+    - export LC_ALL=en_US.UTF-8
     - java -DappPort=$PORT -jar target/puppet-webapp-*.jar
   PostStart:
     - sudo iptables -I INPUT -p tcp -m multiport --dports $PORT -m comment --comment "110 allow http ${PORT} access" -j ACCEPT
