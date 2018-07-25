@@ -1,5 +1,5 @@
 package com.puppet.sample;
-import com.puppet.sample.langs.Sp;
+import com.puppet.sample.langs.Polyglot;
 
 import spark.ModelAndView;
 import spark.Request;
@@ -15,11 +15,6 @@ import static spark.Spark.before;
 
 public class App
 {
-
-  public String enMsg()
-  {
-    return "Hello World!";
-  }
 
   private static String requestInfoToString(Request request) {
     StringBuilder sb = new StringBuilder();
@@ -37,7 +32,7 @@ public class App
       Spark.port(9999);
     }
 
-    Spark.threadPool(1000, 1000,60000);
+    Spark.threadPool(10, 5, 600);
 
     before((request, response) -> {
         System.out.println(requestInfoToString(request));
@@ -58,17 +53,23 @@ public class App
     App t = new App();
     params.put("version", t.getClass().getPackage().getImplementationVersion() );
 
-    if (req.params(":lang").equals("en")) {
-        App test = new App();
-        params.put("lang", test.enMsg());
-    } else if (req.params(":lang").equals("sp")) {
-        Sp sp = new Sp();
-        params.put("lang", sp.Msg());
-    } else {
-        String msg = "I don't know that language ~> ";
-        msg += req.params(":lang");
-        params.put("lang", msg); 
-    } 
+    Polyglot p = new Polyglot();
+
+    switch(req.params(":lang")) {
+      case "en": params.put("lang", p.enMsg());
+                 break;
+      case "sp": params.put("lang", p.spMsg());
+                 break;
+      case "zh": params.put("lang", p.zhMsg());
+                 break;
+      case "ar": params.put("lang", p.arMsg());
+                 break;
+      case "hi": params.put("lang", p.hiMsg());
+                 break;
+      default: String msg = "I don't know that language ~> ";
+               msg += req.params(":lang");
+               params.put("lang", msg); 
+    }
 
     return new ModelAndView(params, "index");
   }
