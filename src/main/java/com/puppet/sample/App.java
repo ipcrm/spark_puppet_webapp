@@ -71,6 +71,12 @@ public class App
                params.put("lang", msg); 
     }
 
+    params.put("en","English");
+    params.put("zh", "中文");
+    params.put("sp", "Español");
+    params.put("hi", "हिंदी");
+    params.put("ar", "عربى");
+
     return new ModelAndView(params, "index");
   }
 
